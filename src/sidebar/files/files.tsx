@@ -1,5 +1,5 @@
 import removeIcon from 'sidebar/icons/remove.svg'
-import { Icons, StatusIcon } from 'sidebar/status-icon'
+import { CurrentStatus, StatusIcon } from 'sidebar/status-icon'
 import * as S from './styles'
 
 type File = {
@@ -9,8 +9,6 @@ type File = {
   active: boolean
   status: 'editing' | 'saving' | 'saved'
 }
-
-console.log(removeIcon)
 
 const files: File[] = [
   {
@@ -39,7 +37,7 @@ const files: File[] = [
     name: 'Links.md',
     content: 'Links',
     active: true,
-    status: 'saved',
+    status: 'saving',
   },
   {
     id: '5',
@@ -66,9 +64,9 @@ function Files () {
           )}
 
           {file.active && (
-            <StatusIcon>
-              <img src={Icons[file.status]} alt={file.status} />
-            </StatusIcon>
+            <CurrentStatus>
+              <StatusIcon status={file.status} />
+            </CurrentStatus>
           )}
         </S.FileItem>
       ))}
