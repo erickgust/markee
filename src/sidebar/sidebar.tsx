@@ -4,6 +4,9 @@ import markeeLogo from './markee-logo.svg'
 import plusIcon from './icons/plus.svg'
 
 const SidebarStyled = styled.aside`
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
   max-width: 33rem;
   width: 100%;
   background-color: ${({ theme }) => theme.colors.black};

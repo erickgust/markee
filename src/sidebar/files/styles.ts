@@ -15,6 +15,7 @@ export const RemoveButton = styled(DefaultButton)`
 `
 
 export const FileList = styled.ul`
+  margin: 0;
   display: flex;
   flex-direction: column;
   gap: 1.6rem;
