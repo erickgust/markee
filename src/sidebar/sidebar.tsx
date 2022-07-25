@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components/macro'
 import { Files } from './files'
 import markeeLogo from './markee-logo.svg'
+import plusIcon from './icons/plus.svg'
 
 const SidebarStyled = styled.aside`
   max-width: 33rem;
@@ -33,6 +34,23 @@ const H2 = styled.h2`${({ theme }) => css`
   }
 `}`
 
+const NewFileButton = styled.button`${({ theme }) => css`
+  background-color: ${theme.colors.primary};
+  color: ${theme.colors.black};
+  border: none;
+  cursor: pointer;
+  font-size: 1.6rem;
+  width: 100%;
+  padding: 1rem;
+  border-radius: 0.5rem;
+
+  ::before {
+    content: url("${plusIcon}");
+    position: relative;
+    padding-right: 1rem;
+  }
+`}`
+
 function Sidebar () {
   return (
     <SidebarStyled>
@@ -47,6 +65,9 @@ function Sidebar () {
           Arquivos
         </span>
       </H2>
+
+      <NewFileButton>Adicionar arquivo</NewFileButton>
+
       <Files />
     </SidebarStyled>
   )
