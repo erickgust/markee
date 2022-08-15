@@ -1,14 +1,7 @@
-import { CurrentStatus, StatusIcon } from 'sidebar/status-icon'
+import { CurrentStatus, StatusIcon } from './status-icon'
 import { RemoveIcon } from 'sidebar/icons'
 import * as S from './styles'
-
-type File = {
-  id: string
-  name: string
-  content: string
-  active: boolean
-  status: 'editing' | 'saving' | 'saved'
-}
+import { File } from './types'
 
 const files: File[] = [
   {

@@ -2,7 +2,7 @@ import styled, { keyframes } from 'styled-components/macro'
 import * as icon from 'sidebar/icons'
 import { Status } from './types'
 
-export type StatusIconProps = {
+type StatusIconProps = {
   status: Status
 }
 
