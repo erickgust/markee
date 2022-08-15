@@ -1,5 +1,5 @@
 import { CurrentStatus, StatusIcon } from './status-icon'
-import { RemoveIcon } from 'sidebar/icons'
+import { RemoveIcon } from 'ui/icons'
 import * as S from './styles'
 import { File } from './types'
 

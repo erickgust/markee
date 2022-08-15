@@ -1,5 +1,5 @@
 import styled, { keyframes } from 'styled-components/macro'
-import * as icon from 'sidebar/icons'
+import * as icon from 'ui/icons'
 import { Status } from './types'
 
 type StatusIconProps = {

@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components/macro'
-import { plusIcon } from './icons'
+import { plusIcon } from 'ui/icons'
 
 export const Aside = styled.aside`
   display: flex;
