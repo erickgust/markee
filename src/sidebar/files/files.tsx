@@ -1,5 +1,5 @@
 import { CurrentStatus, StatusIcon } from 'sidebar/status-icon'
-import { removeIcon } from 'sidebar/icons'
+import { RemoveIcon } from 'sidebar/icons'
 import * as S from './styles'
 
 type File = {
@@ -59,7 +59,7 @@ function Files () {
 
           {!file.active && (
             <S.RemoveButton type='button'>
-              <img src={removeIcon} alt='Remove' />
+              <RemoveIcon />
             </S.RemoveButton>
           )}
 

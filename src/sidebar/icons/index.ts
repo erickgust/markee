@@ -1,4 +1,4 @@
-export { default as removeIcon } from './remove.svg'
+export { ReactComponent as RemoveIcon } from './remove.svg'
 export { ReactComponent as Editing } from './editing.svg'
 export { ReactComponent as Saving } from './saving.svg'
 export { ReactComponent as Saved } from './saved.svg'
