@@ -48,10 +48,15 @@ export const NewFileButton = styled.button`${({ theme }) => css`
   width: 100%;
   padding: 1rem;
   border-radius: 0.5rem;
+  transition: background 150ms ease;
 
   ::before {
     content: url("${plusIcon}");
     position: relative;
     padding-right: 1rem;
+  }
+
+  :hover {
+    background-color: ${theme.colors.primaryDark};
   }
 `}`
