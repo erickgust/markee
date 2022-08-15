@@ -1,6 +1,5 @@
 import styled, { css } from 'styled-components/macro'
-import fileIcon from '../icons/file.svg'
-import fileActiveIcon from '../icons/file-active.svg'
+import { fileIcon, fileActiveIcon } from 'sidebar/icons'
 
 const DefaultButton = styled.button`
   background: none;

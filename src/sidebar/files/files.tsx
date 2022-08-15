@@ -1,5 +1,5 @@
-import removeIcon from 'sidebar/icons/remove.svg'
 import { CurrentStatus, StatusIcon } from 'sidebar/status-icon'
+import { removeIcon } from 'sidebar/icons'
 import * as S from './styles'
 
 type File = {

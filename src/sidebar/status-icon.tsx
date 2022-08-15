@@ -1,7 +1,5 @@
-import styled, { keyframes } from 'styled-components'
-import { ReactComponent as Editing } from './icons/editing.svg'
-import { ReactComponent as SavingIcon } from './icons/saving.svg'
-import { ReactComponent as Saved } from './icons/saved.svg'
+import styled, { keyframes } from 'styled-components/macro'
+import * as icon from './icons'
 
 type StatusIconProps = {
   status: 'saving' | 'saved' | 'editing'
@@ -16,15 +14,15 @@ const rotation = keyframes`
   }
 `
 
-const Saving = styled(SavingIcon)`
+const Saving = styled(icon.Saving)`
   animation: ${rotation} 1s infinite linear;
 `
 
 export function StatusIcon ({ status }: StatusIconProps) {
   const Icon = {
-    editing: Editing,
+    editing: icon.Editing,
     saving: Saving,
-    saved: Saved,
+    saved: icon.Saved,
   }[status]
 
   return <Icon />
