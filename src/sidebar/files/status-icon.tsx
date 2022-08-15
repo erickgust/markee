@@ -1,8 +1,9 @@
 import styled, { keyframes } from 'styled-components/macro'
-import * as icon from './icons'
+import * as icon from 'sidebar/icons'
+import { Status } from './types'
 
-type StatusIconProps = {
-  status: 'saving' | 'saved' | 'editing'
+export type StatusIconProps = {
+  status: Status
 }
 
 const rotation = keyframes`
