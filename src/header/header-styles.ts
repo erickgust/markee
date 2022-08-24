@@ -18,9 +18,11 @@ export const Input = styled.input`${({ theme }) => css`
   }
 `}`
 
+export const HeaderHeight = '50px'
+
 export const Header = styled.header`
   display: flex;
-  height: 40px;
+  height: ${HeaderHeight};
   align-items: center;
   width: 100%;
 `

@@ -1,9 +1,12 @@
+import { HeaderHeight } from 'header/header-styles'
 import styled from 'styled-components/macro'
+
+const Padding = '2rem'
 
 export const Content = styled.section`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  height: calc(100vh - 40px);
+  height: calc(100vh - ${HeaderHeight});
 
   font-weight: 500;
   font-size: 1.6rem;
@@ -15,7 +18,8 @@ export const Textarea = styled.textarea`
   background: none;
   border: none;
   resize: none;
-  padding: 2rem;
+  padding: ${Padding};
+  padding-left: 0;
   color: currentColor;
 
   &:focus {
@@ -27,7 +31,8 @@ export const Div = styled.div`
   background: none;
   overflow-wrap: break-word;
   overflow: auto;
-  padding: 2rem;
+  padding: ${Padding};
+  padding-right: 0;
   position: relative;
 
   &::before {
@@ -36,6 +41,10 @@ export const Div = styled.div`
     background-color: ${({ theme }) => theme.colors.gray};
     width: 2px;
     left: 0;
-    height: calc(100% - 50px);
+    height: calc(100% - ${Padding} * 2);
   }
-  `
+
+  & > h1, h2, h3, h4, h5, h6 {
+    margin-top: 0;
+  }
+`
