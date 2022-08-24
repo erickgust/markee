@@ -1,3 +1,4 @@
+import { Content } from 'content'
 import { Header } from 'header'
 import { Sidebar } from 'sidebar'
 import styled from 'styled-components'
@@ -11,7 +12,10 @@ function App () {
   return (
     <Main>
       <Sidebar />
-      <Header />
+      <section style={{ display: 'flex', flexDirection: 'column' }}>
+        <Header />
+        <Content />
+      </section>
     </Main>
   )
 }
