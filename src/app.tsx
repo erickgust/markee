@@ -1,3 +1,4 @@
+import { Header } from 'header'
 import { Sidebar } from 'sidebar'
 import styled from 'styled-components'
 
@@ -10,7 +11,7 @@ function App () {
   return (
     <Main>
       <Sidebar />
-      <h1>App</h1>
+      <Header />
     </Main>
   )
 }
