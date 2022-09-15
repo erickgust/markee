@@ -3,45 +3,11 @@ import { RemoveIcon } from 'ui/icons'
 import * as S from './styles'
 import { File } from './types'
 
-const files: File[] = [
-  {
-    id: '1',
-    name: 'README.md',
-    content: 'Readme',
-    active: false,
-    status: 'saved',
-  },
-  {
-    id: '2',
-    name: 'CONTRIBUTING.md',
-    content: 'Contributing',
-    active: false,
-    status: 'saved',
-  },
-  {
-    id: '3',
-    name: 'LICENSE.md',
-    content: 'License',
-    active: false,
-    status: 'saved',
-  },
-  {
-    id: '4',
-    name: 'Links.md',
-    content: 'Links',
-    active: true,
-    status: 'saving',
-  },
-  {
-    id: '5',
-    name: 'roadmap.md',
-    content: 'Roadmap',
-    active: true,
-    status: 'editing',
-  },
-]
+type FilesProps = {
+  files: File[]
+}
 
-function Files () {
+function Files ({ files }: FilesProps) {
   return (
     <S.FileList>
       {files.map(file => (

@@ -13,7 +13,7 @@ export const RemoveButton = styled(DefaultButton)`
   height: 100%;
 `
 
-export const FileList = styled.ul`
+export const FileList = styled.ul`${({ theme }) => css`
   margin: 0;
   display: flex;
   flex-direction: column;
@@ -21,7 +21,25 @@ export const FileList = styled.ul`
   list-style: none;
   font-size: 1.6rem;
   padding: 0;
-`
+  overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    width: 0.8rem;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: ${theme.colors.lightBlack};
+    border-radius: 0.5rem;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: ${theme.colors.primaryDark};
+  }
+`}`
 
 type FileItemProps = {
   active: boolean
@@ -48,8 +66,9 @@ export const FileLink = styled.a`${({ theme }) => css`
 
 export const FileItem = styled.li<FileItemProps>`${({ theme, active }) => css`
   display: flex;
+  width: calc(100% - 0.8rem);
   border-radius: 0.5rem;
-  height: 4rem;
+  min-height: 4rem;
   cursor: pointer;
 
   :hover {
