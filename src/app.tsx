@@ -1,3 +1,4 @@
+import { useRef } from 'react'
 import { Content } from 'content'
 import { Header } from 'header'
 import { Sidebar } from 'sidebar'
@@ -17,11 +18,13 @@ const Section = styled.section`
 `
 
 function App () {
+  const inputRef = useRef<HTMLInputElement>(null)
+
   return (
     <Main>
-      <Sidebar />
+      <Sidebar inputRef={inputRef} />
       <Section>
-        <Header />
+        <Header inputRef={inputRef} />
         <Content />
       </Section>
     </Main>

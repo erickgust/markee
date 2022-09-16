@@ -1,11 +1,15 @@
-import { useState } from 'react'
+import { RefObject, useState } from 'react'
 import { v4 } from 'uuid'
 import { Files } from './files'
 import { File } from './files/types'
 import markeeLogo from './markee-logo.svg'
 import * as S from './sidebar-styles'
 
-function Sidebar () {
+type SidebarProps = {
+  inputRef: RefObject<HTMLInputElement>
+}
+
+function Sidebar ({ inputRef }: SidebarProps) {
   const [files, setFiles] = useState<File[]>([{
     id: v4(),
     name: 'README.md',
@@ -29,6 +33,8 @@ function Sidebar () {
   }])
 
   const handleNewFile = () => {
+    inputRef.current?.focus()
+
     setFiles(files => files
       .map(file => ({ ...file, active: false }))
       .concat({
