@@ -17,7 +17,7 @@ export const FileList = styled.ul`${({ theme }) => css`
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 1.6rem;
+  gap: 0.8rem;
   list-style: none;
   font-size: 1.6rem;
   padding: 0;
