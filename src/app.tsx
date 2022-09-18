@@ -1,4 +1,4 @@
-import { ChangeEvent, useCallback, useEffect, useRef, useState } from 'react'
+import { ChangeEvent, MouseEvent, useCallback, useEffect, useRef, useState } from 'react'
 import { Content } from 'content'
 import { Header } from 'header'
 import { Sidebar } from 'sidebar'
@@ -43,6 +43,21 @@ function App () {
     )
   }
 
+  const handleSelectFile = useCallback((id: string) => (e: MouseEvent) => {
+    e.preventDefault()
+
+    const file = files.find(file => file.id === id)
+
+    if (!file) return
+
+    setFiles(files => (
+      files.map(file => ({ ...file, active: file.id === id }))
+    ))
+
+    setTitle(file.name)
+    setContent(file.content)
+  }, [files])
+
   const handleChangeTitle = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     setTitle(e.currentTarget.value)
     setEditing(true)
@@ -84,7 +99,11 @@ function App () {
 
   return (
     <Main>
-      <Sidebar files={files} onNewFile={handleNewFile} />
+      <Sidebar
+        files={files}
+        onNewFile={handleNewFile}
+        onSelectFile={handleSelectFile}
+      />
       <Section>
         <Header
           inputRef={inputRef}

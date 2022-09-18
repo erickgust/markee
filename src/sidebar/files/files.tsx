@@ -2,16 +2,18 @@ import { CurrentStatus, StatusIcon } from './status-icon'
 import { RemoveIcon } from 'ui/icons'
 import * as S from './styles'
 import { File } from './types'
+import { MouseEvent } from 'react'
 
 type FilesProps = {
   files: File[]
+  onSelectFile: (id: string) => (e: MouseEvent) => void
 }
 
-function Files ({ files }: FilesProps) {
+function Files ({ files, onSelectFile }: FilesProps) {
   return (
     <S.FileList>
       {files.map(file => (
-        <S.FileItem key={file.id} active={file.active}>
+        <S.FileItem key={file.id} active={file.active} onClick={onSelectFile(file.id)}>
           <S.FileLink href={`/file/${file.id}`}>
             {file.name}
           </S.FileLink>

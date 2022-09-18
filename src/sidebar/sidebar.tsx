@@ -1,14 +1,16 @@
+import { MouseEvent } from 'react'
 import { Files } from './files'
 import { File } from './files/types'
 import markeeLogo from './markee-logo.svg'
 import * as S from './sidebar-styles'
 
 type SidebarProps = {
-  onNewFile: () => void
   files: File[]
+  onNewFile: () => void
+  onSelectFile: (id: string) => (e: MouseEvent) => void
 }
 
-function Sidebar ({ files, onNewFile }: SidebarProps) {
+function Sidebar ({ files, onNewFile, onSelectFile }: SidebarProps) {
   return (
     <S.Aside>
       <S.H1>
@@ -23,7 +25,7 @@ function Sidebar ({ files, onNewFile }: SidebarProps) {
 
       <S.NewFileButton onClick={onNewFile}>Adicionar arquivo</S.NewFileButton>
 
-      <Files files={files} />
+      <Files files={files} onSelectFile={onSelectFile} />
     </S.Aside>
   )
 }
