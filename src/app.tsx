@@ -49,6 +49,7 @@ function App () {
 
   const handleSelectFile = useCallback((id: string) => (e: MouseEvent) => {
     e.preventDefault()
+    inputRef.current?.focus()
 
     const file = files.find(file => file.id === id)
 
