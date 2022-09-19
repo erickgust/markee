@@ -7,19 +7,23 @@ import { MouseEvent } from 'react'
 type FilesProps = {
   files: File[]
   onSelectFile: (id: string) => (e: MouseEvent) => void
+  onDeleteFile: (id: string) => void
 }
 
-function Files ({ files, onSelectFile }: FilesProps) {
+function Files ({ files, onSelectFile, onDeleteFile }: FilesProps) {
   return (
     <S.FileList>
       {files.map(file => (
-        <S.FileItem key={file.id} active={file.active} onClick={onSelectFile(file.id)}>
-          <S.FileLink href={`/file/${file.id}`}>
+        <S.FileItem key={file.id} active={file.active}>
+          <S.FileLink href={`/file/${file.id}`} onClick={onSelectFile(file.id)}>
             {file.name}
           </S.FileLink>
 
           {!file.active && (
-            <S.RemoveButton type='button'>
+            <S.RemoveButton
+              type='button'
+              onClick={() => onDeleteFile(file.id)}
+            >
               <RemoveIcon />
             </S.RemoveButton>
           )}

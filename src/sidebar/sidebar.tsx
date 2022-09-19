@@ -8,9 +8,10 @@ type SidebarProps = {
   files: File[]
   onNewFile: () => void
   onSelectFile: (id: string) => (e: MouseEvent) => void
+  onDeleteFile: (id: string) => void
 }
 
-function Sidebar ({ files, onNewFile, onSelectFile }: SidebarProps) {
+function Sidebar ({ files, onNewFile, onSelectFile, onDeleteFile }: SidebarProps) {
   return (
     <S.Aside>
       <S.H1>
@@ -25,7 +26,11 @@ function Sidebar ({ files, onNewFile, onSelectFile }: SidebarProps) {
 
       <S.NewFileButton onClick={onNewFile}>Adicionar arquivo</S.NewFileButton>
 
-      <Files files={files} onSelectFile={onSelectFile} />
+      <Files
+        files={files}
+        onSelectFile={onSelectFile}
+        onDeleteFile={onDeleteFile}
+      />
     </S.Aside>
   )
 }

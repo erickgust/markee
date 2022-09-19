@@ -84,6 +84,10 @@ function App () {
     setFileInfo(fileInfo => ({ ...fileInfo, ...fileProps }))
   }, [])
 
+  const handleRemoveFile = useCallback((id: string) => {
+    setFiles(files => files.filter(file => file.id !== id))
+  }, [])
+
   function handleActiveFile (fileProps: Partial<FileInfo>) {
     setFiles(files => (
       files.map(file => (
@@ -116,6 +120,7 @@ function App () {
         files={files}
         onNewFile={handleNewFile}
         onSelectFile={handleSelectFile}
+        onDeleteFile={handleRemoveFile}
       />
       <Section>
         <Header
