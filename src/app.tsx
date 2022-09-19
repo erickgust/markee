@@ -19,12 +19,16 @@ const Section = styled.section`
   width: 100%;
 `
 
+type FileInfo = Pick<File, 'name' | 'content'>
+
 function App () {
   const initialTitle = 'Sem título'
   const inputRef = useRef<HTMLInputElement>(null)
 
-  const [title, setTitle] = useState(initialTitle)
-  const [content, setContent] = useState('')
+  const [fileInfo, setFileInfo] = useState<FileInfo>({
+    name: initialTitle,
+    content: '',
+  })
   const [editing, setEditing] = useState(false)
   const [files, setFiles] = useState<File[]>([])
 
@@ -54,27 +58,23 @@ function App () {
       files.map(file => ({ ...file, active: file.id === id }))
     ))
 
-    setTitle(file.name)
-    setContent(file.content)
+    setFileInfo({ name: file.name, content: file.content })
   }, [files])
 
-  const handleChangeTitle = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-    setTitle(e.currentTarget.value)
-    setEditing(true)
+  const handleChange = useCallback((type: keyof FileInfo) => {
+    return (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      setFileInfo(file => ({ ...file, [type]: e.target.value }))
+      setEditing(true)
+    }
   }, [])
 
-  const handleChangeContent = useCallback((e: ChangeEvent<HTMLTextAreaElement>) => {
-    setContent(e.currentTarget.value)
-    setEditing(true)
-  }, [])
-
-  const handleFileSave = useCallback((title: string, content: string) => {
+  const handleFileSave = useCallback(({ name, content }: FileInfo) => {
     setFiles(files => (
       files.map(file => {
         if (file.active) {
           return {
             ...file,
-            name: title || initialTitle,
+            name: name || initialTitle,
             content,
           }
         }
@@ -89,13 +89,13 @@ function App () {
 
     if (editing) {
       timer = setTimeout(() => {
-        handleFileSave(title, content)
+        handleFileSave(fileInfo)
         setEditing(false)
       }, 300)
     }
 
     return () => clearTimeout(timer)
-  }, [title, content, editing, handleFileSave])
+  }, [editing, handleFileSave, fileInfo])
 
   return (
     <Main>
@@ -107,12 +107,12 @@ function App () {
       <Section>
         <Header
           inputRef={inputRef}
-          onChangeTitle={handleChangeTitle}
-          title={title}
+          onChangeTitle={handleChange('name')}
+          title={fileInfo.name}
         />
         <Content
-          onChangeContent={handleChangeContent}
-          content={content}
+          onChangeContent={handleChange('content')}
+          content={fileInfo.content}
         />
       </Section>
     </Main>
