@@ -19,17 +19,17 @@ const Section = styled.section`
   width: 100%;
 `
 
-type FileInfo = Pick<File, 'name' | 'content'>
+type FileInfo = Pick<File, 'name' | 'content' | 'status'>
 
 function App () {
-  const initialTitle = 'Sem título'
-  const inputRef = useRef<HTMLInputElement>(null)
-
-  const [fileInfo, setFileInfo] = useState<FileInfo>({
-    name: initialTitle,
+  const initialFileInfo: FileInfo = {
+    name: 'Sem título',
     content: '',
-  })
-  const [editing, setEditing] = useState(false)
+    status: 'saved',
+  }
+
+  const inputRef = useRef<HTMLInputElement>(null)
+  const [fileInfo, setFileInfo] = useState(initialFileInfo)
   const [files, setFiles] = useState<File[]>([])
 
   const handleNewFile = () => {
@@ -39,12 +39,12 @@ function App () {
       .map(file => ({ ...file, active: false }))
       .concat({
         id: v4(),
-        name: 'Sem título',
-        content: '',
         active: true,
-        status: 'saved',
+        ...initialFileInfo,
       }),
     )
+
+    setFileInfo({ ...initialFileInfo })
   }
 
   const handleSelectFile = useCallback((id: string) => (e: MouseEvent) => {
@@ -58,44 +58,57 @@ function App () {
       files.map(file => ({ ...file, active: file.id === id }))
     ))
 
-    setFileInfo({ name: file.name, content: file.content })
+    setFileInfo(fileInfo => ({
+      ...fileInfo,
+      name: file.name,
+      content: file.content,
+    }))
   }, [files])
 
   const handleChange = useCallback((type: keyof FileInfo) => {
     return (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-      setFileInfo(file => ({ ...file, [type]: e.target.value }))
-      setEditing(true)
+      setFileInfo(file => ({
+        ...file,
+        status: 'editing',
+        [type]: e.target.value,
+      }))
+
+      if (fileInfo.status === 'saved') {
+        handleActiveFile({ status: 'editing' })
+      }
     }
+  }, [fileInfo.status])
+
+  const handleFileSave = useCallback((fileProps: Partial<FileInfo>) => {
+    handleActiveFile(fileProps)
+    setFileInfo(fileInfo => ({ ...fileInfo, ...fileProps }))
   }, [])
 
-  const handleFileSave = useCallback(({ name, content }: FileInfo) => {
+  function handleActiveFile (fileProps: Partial<FileInfo>) {
     setFiles(files => (
-      files.map(file => {
-        if (file.active) {
-          return {
-            ...file,
-            name: name || initialTitle,
-            content,
-          }
-        }
-
-        return file
-      })
+      files.map(file => (
+        file.active
+          ? { ...file, ...fileProps }
+          : file
+      ))
     ))
-  }, [])
+  }
 
   useEffect(() => {
     let timer: ReturnType<typeof setTimeout>
 
-    if (editing) {
+    if (fileInfo.status === 'editing') {
       timer = setTimeout(() => {
-        handleFileSave(fileInfo)
-        setEditing(false)
+        handleFileSave({ status: 'saving' })
+
+        setTimeout(() => {
+          handleFileSave({ ...fileInfo, status: 'saved' })
+        }, 300)
       }, 300)
     }
 
     return () => clearTimeout(timer)
-  }, [editing, handleFileSave, fileInfo])
+  }, [handleFileSave, fileInfo])
 
   return (
     <Main>
