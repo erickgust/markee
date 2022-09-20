@@ -107,7 +107,11 @@ function App () {
         handleFileSave({ status: 'saving' })
 
         setTimeout(() => {
-          handleFileSave({ ...fileInfo, status: 'saved' })
+          handleFileSave({
+            ...fileInfo,
+            name: fileInfo.name || 'Sem título',
+            status: 'saved',
+          })
         }, 300)
       }, 300)
     }
