@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from 'react'
+import { ChangeEvent } from 'react'
 import * as S from './content-styles'
 import { marked } from 'marked'
 import { sanitize } from 'dompurify'
@@ -17,13 +17,12 @@ import('highlight.js').then(({ default: hljs }) => {
   })
 })
 
-function Content () {
-  const [content, setContent] = useState('')
+type ContentProps = {
+  onChangeContent: (e: ChangeEvent<HTMLTextAreaElement>) => void
+  content: string
+}
 
-  const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    setContent(e.currentTarget.value)
-  }
-
+function Content ({ onChangeContent, content }: ContentProps) {
   return (
     <S.Content>
       <S.Textarea
@@ -31,7 +30,7 @@ function Content () {
         id='editor'
         placeholder='Digite aqui seu markdown'
         value={content}
-        onChange={handleChange}
+        onChange={onChangeContent}
       />
       <S.Div
         dangerouslySetInnerHTML={{

@@ -1,11 +1,13 @@
-import { RefObject } from 'react'
+import { ChangeEvent, RefObject } from 'react'
 import * as S from './header-styles'
 
 type HeaderProps = {
   inputRef: RefObject<HTMLInputElement>
+  onChangeTitle: (e: ChangeEvent<HTMLInputElement>) => void
+  title: string
 }
 
-function Header ({ inputRef }: HeaderProps) {
+function Header ({ inputRef, onChangeTitle, title }: HeaderProps) {
   return (
     <S.Header>
       <label>
@@ -13,9 +15,10 @@ function Header ({ inputRef }: HeaderProps) {
           type='text'
           name='title'
           id='title'
-          defaultValue='Sem título'
+          value={title}
           placeholder='Adicione um título'
           ref={inputRef}
+          onChange={onChangeTitle}
         />
       </label>
     </S.Header>
