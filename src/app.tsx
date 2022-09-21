@@ -1,6 +1,6 @@
-import { Content } from 'content'
-import { Header } from 'header'
 import { useFiles } from 'resources/files/use-files'
+import { Header } from 'header'
+import { Content } from 'content'
 import { Sidebar } from 'sidebar'
 import styled from 'styled-components/macro'
 
