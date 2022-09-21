@@ -9,6 +9,7 @@ import {
 } from 'react'
 import { v4 } from 'uuid'
 import { File } from 'sidebar/files/types'
+import localforage from 'localforage'
 
 type FileInfo = Pick<File, 'name' | 'content' | 'status'>
 
@@ -23,7 +24,7 @@ function useFiles () {
   const [fileInfo, setFileInfo] = useState(initialFileInfo)
   const [files, setFiles] = useState<File[]>([])
 
-  const handleNewFile = () => {
+  const handleNewFile = useCallback(() => {
     inputRef.current?.focus()
 
     setFiles(files => files
@@ -36,7 +37,7 @@ function useFiles () {
     )
 
     setFileInfo({ ...initialFileInfo })
-  }
+  }, [initialFileInfo])
 
   const handleSelectFile = useCallback((id: string) => (e: MouseEvent) => {
     e.preventDefault()
@@ -112,6 +113,32 @@ function useFiles () {
 
     return () => clearTimeout(timer)
   }, [handleFileSave, fileInfo])
+
+  useEffect(() => {
+    async function getStorage () {
+      const files = await localforage.getItem<File[]>('files')
+
+      if (files) {
+        setFiles(files)
+
+        const file = files.find(file => file.active)
+
+        if (file) {
+          setFileInfo(file)
+        }
+
+        return
+      }
+
+      handleNewFile()
+    }
+
+    getStorage()
+  }, [handleNewFile])
+
+  useEffect(() => {
+    localforage.setItem('files', files)
+  }, [files])
 
   return {
     handleChange,
