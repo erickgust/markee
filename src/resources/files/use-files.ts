@@ -95,6 +95,14 @@ function useFiles () {
   }
 
   useEffect(() => {
+    const activeFile = files.find(file => file.active)
+
+    if (activeFile) {
+      window.history.replaceState(null, '', `/file/${activeFile.id}`)
+    }
+  }, [files])
+
+  useEffect(() => {
     let timer: ReturnType<typeof setTimeout>
 
     if (fileInfo.status === 'editing') {
