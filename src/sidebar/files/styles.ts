@@ -32,12 +32,12 @@ export const FileList = styled.ul`${({ theme }) => css`
   }
 
   &::-webkit-scrollbar-thumb {
-    background: ${theme.colors.lightBlack};
+    background: ${theme.colors.sidebar.lightBlack};
     border-radius: 0.5rem;
   }
 
   &::-webkit-scrollbar-thumb:hover {
-    background: ${theme.colors.primaryDark};
+    background: ${theme.colors.sidebar.primaryDark};
   }
 `}`
 
@@ -47,7 +47,7 @@ type FileItemProps = {
 
 export const FileLink = styled.a`${({ theme }) => css`
   text-decoration: none;
-  color: ${theme.colors.gray};
+  color: ${theme.colors.sidebar.gray};
   width: 100%;
   display: flex;
   align-items: center;
@@ -77,21 +77,21 @@ export const FileItem = styled.li<FileItemProps>`${({ theme, active }) => css`
     }
 
     ${FileLink} {
-      color: ${theme.colors.white};
+      color: ${theme.colors.sidebar.white};
     }
 
     ${FileLink}::before {
       opacity: 1;
     }
 
-    background-color: ${theme.colors.lightBlack};
+    background-color: ${theme.colors.sidebar.lightBlack};
   }
 
   ${active && css`
-    background-color: ${theme.colors.lightBlack};
+    background-color: ${theme.colors.sidebar.lightBlack};
 
     ${FileLink} {
-      color: ${theme.colors.white};
+      color: ${theme.colors.sidebar.white};
     }
 
     ${FileLink}::before {

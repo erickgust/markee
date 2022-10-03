@@ -11,7 +11,7 @@ export const Content = styled.section`
   font-weight: 500;
   font-size: 1.6rem;
   font-family: 'Inconsolata', 'Courier New', Courier, monospace;
-  color: ${({ theme }) => theme.colors.black};
+  color: ${({ theme }) => theme.colors.text};
 `
 
 export const Textarea = styled.textarea`
@@ -24,6 +24,11 @@ export const Textarea = styled.textarea`
 
   &:focus {
     outline: none;
+  }
+
+  &::placeholder {
+    color: ${({ theme }) => theme.colors.text};
+    opacity: 0.7;
   }
 `
 
@@ -38,7 +43,7 @@ export const Div = styled.div`
   &::before {
     content: '';
     position: absolute;
-    background-color: ${({ theme }) => theme.colors.gray};
+    background-color: ${({ theme }) => theme.colors.separator};
     width: 2px;
     left: 0;
     height: calc(100% - ${Padding} * 2);
