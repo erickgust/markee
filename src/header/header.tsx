@@ -25,8 +25,12 @@ function Header ({ inputRef, onChangeTitle, title }: HeaderProps) {
         />
       </label>
 
-      <S.Button onClick={handleToggleTheme}>
-        {theme === 'light' ? '🌞' : '🌚'}
+      <S.Button
+        onClick={handleToggleTheme}
+        isDarkTheme={theme === 'dark'}
+        type='button'
+      >
+        <span>{theme === 'dark' ? 'Dark mode' : 'Light mode'}</span>
       </S.Button>
     </S.Header>
   )
