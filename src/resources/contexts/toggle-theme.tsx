@@ -1,4 +1,5 @@
-import { createContext, ReactNode, useMemo, useState } from 'react'
+import localforage from 'localforage'
+import { createContext, ReactNode, useEffect, useMemo, useState } from 'react'
 import { themes } from 'resources/theme/theme'
 import { ThemeProvider } from 'styled-components'
 
@@ -17,6 +18,16 @@ type ToggleThemeProviderProps = {
 
 export function ToggleThemeProvider ({ children }: ToggleThemeProviderProps) {
   const [theme, setTheme] = useState<Theme>('light')
+
+  useEffect(() => {
+    localforage.getItem<Theme>('theme').then(storedTheme => {
+      setTheme(storedTheme ?? 'light')
+    })
+  }, [])
+
+  useEffect(() => {
+    localforage.setItem('theme', theme)
+  }, [theme])
 
   const currentTheme = useMemo(() => {
     return themes[theme] || themes.light
