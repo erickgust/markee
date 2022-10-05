@@ -3,7 +3,7 @@ import * as S from './content-styles'
 import { marked } from 'marked'
 import { sanitize } from 'dompurify'
 
-import 'highlight.js/styles/github.css'
+import 'highlight.js/styles/github-dark.css'
 
 import('highlight.js').then(({ default: hljs }) => {
   marked.setOptions({
