@@ -1,4 +1,5 @@
 import { ChangeEvent, RefObject } from 'react'
+import { useToggleTheme } from 'resources/theme/use-theme'
 import * as S from './header-styles'
 
 type HeaderProps = {
@@ -8,6 +9,8 @@ type HeaderProps = {
 }
 
 function Header ({ inputRef, onChangeTitle, title }: HeaderProps) {
+  const { theme, handleToggleTheme } = useToggleTheme()
+
   return (
     <S.Header>
       <label>
@@ -21,6 +24,14 @@ function Header ({ inputRef, onChangeTitle, title }: HeaderProps) {
           onChange={onChangeTitle}
         />
       </label>
+
+      <S.Button
+        onClick={handleToggleTheme}
+        isDarkTheme={theme === 'dark'}
+        type='button'
+      >
+        <span>{theme === 'dark' ? 'Dark mode' : 'Light mode'}</span>
+      </S.Button>
     </S.Header>
   )
 }

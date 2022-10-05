@@ -1,5 +1,5 @@
-import { createGlobalStyle, ThemeProvider } from 'styled-components'
-import { theme } from 'resources/theme'
+import { ToggleThemeProvider } from 'resources/contexts/toggle-theme'
+import { createGlobalStyle } from 'styled-components'
 import { App } from './app'
 
 import 'normalize.css'
@@ -20,10 +20,10 @@ const GlobalStyle = createGlobalStyle`
 
 function Root () {
   return (
-    <ThemeProvider theme={theme}>
+    <ToggleThemeProvider>
       <GlobalStyle />
       <App />
-    </ThemeProvider>
+    </ToggleThemeProvider>
   )
 }
 

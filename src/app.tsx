@@ -13,7 +13,7 @@ const Section = styled.section`
   display: flex;
   flex-direction: column;
   padding: 2.4rem;
-  background-color: ${({ theme }) => theme.colors.white};
+  background-color: ${({ theme }) => theme.background};
   width: 100%;
 `
 
