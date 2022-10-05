@@ -7,7 +7,7 @@ export const Aside = styled.aside`
   gap: 2rem;
   max-width: 33rem;
   width: 100%;
-  background-color: ${({ theme }) => theme.colors.sidebar.black};
+  background-color: ${({ theme }) => theme.staticColors.black};
   padding: 3.2rem;
 `
 
@@ -16,7 +16,7 @@ export const H1 = styled.h1`
 `
 
 export const H2 = styled.h2`${({ theme }) => css`
-  color: ${theme.colors.sidebar.white};
+  color: ${theme.staticColors.white};
   position: relative;
   padding-left: 2rem;
   font-size: 1.6rem;
@@ -24,7 +24,7 @@ export const H2 = styled.h2`${({ theme }) => css`
   &::before {
     content: '';
     position: absolute;
-    border-bottom: 2px solid ${theme.colors.sidebar.primary};
+    border-bottom: 2px solid ${theme.staticColors.primary};
     border-radius: 5px;
     width: 100%;
     left: 0;
@@ -33,15 +33,15 @@ export const H2 = styled.h2`${({ theme }) => css`
   }
 
   > span {
-    background-color: ${theme.colors.sidebar.black};
+    background-color: ${theme.staticColors.black};
     position: relative;
     padding: 0 1rem;
   }
 `}`
 
 export const NewFileButton = styled.button`${({ theme }) => css`
-  background-color: ${theme.colors.sidebar.primary};
-  color: ${theme.colors.sidebar.black};
+  background-color: ${theme.staticColors.primary};
+  color: ${theme.staticColors.black};
   border: none;
   cursor: pointer;
   font-size: 1.6rem;
@@ -57,6 +57,6 @@ export const NewFileButton = styled.button`${({ theme }) => css`
   }
 
   :hover {
-    background-color: ${theme.colors.sidebar.primaryDark};
+    background-color: ${theme.staticColors.primaryDark};
   }
 `}`

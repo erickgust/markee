@@ -10,25 +10,21 @@ const colors = {
 }
 
 const light: DefaultTheme = {
-  colors: {
-    background: colors.white,
-    separator: colors.gray,
-    text: colors.black,
-    primary: colors.primary,
+  background: colors.white,
+  separator: colors.gray,
+  text: colors.black,
+  primary: colors.primary,
 
-    sidebar: { ...colors },
-  },
+  staticColors: colors,
 }
 
 const dark: DefaultTheme = {
-  colors: {
-    background: '#1C2535',
-    separator: colors.lightBlack,
-    text: colors.white,
-    primary: colors.primary,
+  background: '#1C2535',
+  separator: colors.lightBlack,
+  text: colors.white,
+  primary: colors.primary,
 
-    sidebar: { ...colors },
-  },
+  staticColors: colors,
 }
 
 export const themes = { dark, light }

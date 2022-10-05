@@ -1,5 +1,5 @@
 import { HeaderHeight } from 'header/header-styles'
-import styled from 'styled-components/macro'
+import styled, { css } from 'styled-components/macro'
 
 const Padding = '2rem'
 
@@ -11,7 +11,7 @@ export const Content = styled.section`
   font-weight: 500;
   font-size: 1.6rem;
   font-family: 'Inconsolata', 'Courier New', Courier, monospace;
-  color: ${({ theme }) => theme.colors.text};
+  color: ${({ theme }) => theme.text};
 `
 
 export const Textarea = styled.textarea`
@@ -27,13 +27,13 @@ export const Textarea = styled.textarea`
   }
 
   &::placeholder {
-    color: ${({ theme }) => theme.colors.text};
+    color: ${({ theme }) => theme.text};
     opacity: 0.7;
   }
 `
 
-export const Div = styled.div`
-  background: none;
+export const Div = styled.div`${({ theme }) => css`
+    background: none;
   overflow-wrap: break-word;
   overflow: auto;
   padding: ${Padding};
@@ -43,7 +43,7 @@ export const Div = styled.div`
   &::before {
     content: '';
     position: absolute;
-    background-color: ${({ theme }) => theme.colors.separator};
+    background-color: ${({ theme }) => theme.separator};
     width: 2px;
     left: 0;
     height: calc(100% - ${Padding} * 2);
@@ -54,9 +54,9 @@ export const Div = styled.div`
   }
 
   & > pre {
-    background-color: #1E293B;
-    color: #FAFAFA;
+    background-color: ${theme.staticColors.black};
+    color: ${theme.staticColors.white};
     border-radius: 0.5rem;
     padding: 1rem;
   }
-`
+`}`

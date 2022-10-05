@@ -5,7 +5,7 @@ export const Input = styled.input`${({ theme }) => css`
   background: url(${fileActiveIcon}) left calc(50% - 1px) no-repeat;
   border: none;
 
-  color: ${theme.colors.text};
+  color: ${theme.text};
   font-size: 1.8rem;
   font-weight: 500;
 
@@ -18,7 +18,7 @@ export const Input = styled.input`${({ theme }) => css`
   }
 
   &::placeholder {
-    color: ${theme.colors.text};
+    color: ${theme.text};
     opacity: 0.6;
   }
 `}`
@@ -34,7 +34,7 @@ export const Button = styled.button<ButtonType>`${({ theme, isDarkTheme }) => cs
   cursor: pointer;
   position: relative;
 
-  background-color: ${theme.colors.separator};
+  background-color: ${theme.separator};
   transition: .4s;
   border-radius: 4.8rem;
   width: 5.6rem;
@@ -56,7 +56,7 @@ export const Button = styled.button<ButtonType>`${({ theme, isDarkTheme }) => cs
     ${isDarkTheme && css`
       &::before {
         left: calc(100% - (${iconSize} + 0.5rem));
-        background: ${theme.colors.separator};
+        background: ${theme.separator};
         box-shadow:
           inset -3px -2px 5px -2px #8983f7,
           inset -10px -4px 0 0 #a3dafb
