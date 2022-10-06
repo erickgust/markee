@@ -71,6 +71,8 @@ export const FileItem = styled.li<FileItemProps>`${({ theme, active }) => css`
   min-height: 4rem;
   cursor: pointer;
 
+  align-items: center;
+
   :hover {
     ${RemoveButton} {
       visibility: visible;
